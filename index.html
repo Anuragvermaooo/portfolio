@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anurag Verma - Portfolio</title>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* RESET */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Poppins',sans-serif;background:#0f0c29;color:#e2e8f0;overflow-x:hidden;}
+
+    /* BG animation */
+    body::before{
+      content:"";position:fixed;top:0;left:0;width:100%;height:100%;
+      background:linear-gradient(45deg,#ff00cc,#333399,#00f2fe);
+      background-size:400% 400%;z-index:-1;
+      animation:gradientMove 15s ease infinite;
+    }
+    @keyframes gradientMove{
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    /* Header */
+    header{padding:20px;text-align:center;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.6);position:sticky;top:0;z-index:10;}
+    nav{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+    nav a{color:#fff;text-decoration:none;font-weight:bold;padding:10px 20px;border-radius:30px;
+      background:linear-gradient(90deg,#06b6d4,#3b82f6);transition:0.3s;}
+    nav a:hover{background:linear-gradient(90deg,#3b82f6,#06b6d4);box-shadow:0 0 20px #06b6d4;}
+
+    /* Hero (Photo + Bio) */
+    .hero{display:flex;align-items:center;justify-content:center;gap:50px;
+      padding:80px 20px;flex-wrap:wrap;}
+    .hero-left img{width:260px;border-radius:20px;border:3px solid #0ff;box-shadow:0 0 30px #0ff;transition:0.4s;}
+    .hero-left img:hover{transform:scale(1.08) rotate(3deg);box-shadow:0 0 60px #0ff;}
+    .hero-right{max-width:600px;background:rgba(255,255,255,0.05);padding:30px;border-radius:20px;
+      backdrop-filter:blur(15px);box-shadow:0 8px 30px rgba(0,0,0,0.5);}
+    .hero-right h1{font-size:42px;color:#0ff;margin-bottom:15px;}
+    .hero-right p{font-size:18px;color:#cbd5e1;line-height:1.6;}
+    .highlight{color:#facc15;font-weight:bold;}
+
+    /* Sections */
+    section{padding:60px 20px;text-align:center;max-width:1200px;margin:auto;}
+    section h2{font-size:34px;margin-bottom:20px;color:#0ff;}
+    section p{font-size:18px;line-height:1.6;}
+
+    /* Grid (Projects + Skills) */
+    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px;margin-top:30px;}
+    .card{background:rgba(255,255,255,0.05);padding:25px;border-radius:18px;backdrop-filter:blur(10px);
+      transition:0.4s;font-size:18px;box-shadow:0 8px 20px rgba(0,0,0,0.4);}
+    .card:hover{transform:translateY(-12px);background:linear-gradient(135deg,#06b6d4,#3b82f6);color:#fff;
+      box-shadow:0 10px 40px rgba(6,182,212,0.8);}
+
+    /* Contact */
+    /* .contact a{color:#0ff;text-decoration:none;font-weight:bold;}
+    .contact a:hover{text-decoration:underline;} */
+
+    /* Footer */
+    footer{margin-top:50px;display:flex;justify-content:center;align-items:center;padding:50px 20px;}
+    .footer-container{display:flex;flex-wrap:wrap;background:#6a0832;border-radius:12px;overflow:hidden;
+      max-width:1000px;width:100%;box-shadow:0 10px 25px rgba(0,0,0,0.4);}
+
+    .footer-img{flex:1 1 250px;min-height:220px;}
+    .footer-img img{width:100%;height:100%;object-fit:cover;}
+
+    .footer-content{flex:2 1 400px;padding:30px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;}
+
+    .bio{margin-bottom:20px;}
+    .bio h3{font-size:22px;margin-bottom:10px;color:#0ff;}
+    .bio p{line-height:1.6;font-size:15px;color:#ddd;}
+
+    .newsletter{display:flex;flex-wrap:wrap;margin-bottom:30px;}
+    .newsletter input{flex:1;padding:12px 18px;border:none;border-radius:30px 0 0 30px;outline:none;font-size:15px;}
+    .newsletter button{padding:12px 22px;border:none;border-radius:0 30px 30px 0;background:#efae46;
+      color:#333;font-weight:bold;cursor:pointer;transition:0.3s;}
+    .newsletter button:hover{background:#fff;}
+
+    .footer-links{display:flex;flex-wrap:wrap;gap:40px;margin-bottom:25px;}
+    .footer-links h3{margin-bottom:10px;font-size:16px;}
+    .footer-links ul{list-style:none;}
+    .footer-links li{margin:6px 0;}
+    .footer-links a{color:#ddd;text-decoration:none;font-size:14px;transition:0.3s;}
+    .footer-links a:hover{color:#fff;}
+
+    .footer-bottom{border-top:1px solid rgba(255,255,255,0.3);padding-top:15px;
+      display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;font-size:14px;}
+    .socials a{color:#fff;margin-left:12px;font-size:16px;transition:0.3s;}
+    .socials a:hover{color:#fabfbf;}
+
+    @media(max-width:768px){
+      .hero{flex-direction:column;}
+      .footer-container{flex-direction:column;}
+      .footer-content{padding:20px;}
+      .newsletter input{border-radius:30px;margin-bottom:10px;}
+      .newsletter button{border-radius:30px;width:100%;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+       <a href="#home">Home</a> 
+      <!-- <a href="#about">About</a> --> 
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <!-- <a href="#contact-form">Contact</a> -->
+      <!-- <a href="#help">Help</a> -->
+    </nav>
+  </header>
+
+  <!-- Hero -->
+<title>Hero Section with Socials</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 10%;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    /* Left Side */
+    .hero-left {
+      flex: 1;
+      text-align: center;
+    }
+
+    .hero-left img {
+      width: 220px;
+      height: 220px;
+      border-radius: 10%;
+      object-fit: cover;
+      border: 3px solid #ddd;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      transition: 0.3s;
+    }
+    .hero-left img:hover {
+      transform: scale(1.05);
+    }
+
+    .socials {
+      margin-top: 20px;
+    }
+    .socials a {
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 24px;
+      color: #ffffff;
+      transition: all 0.3s ease;
+    }
+    .socials a:hover {
+      transform: translateY(-5px) scale(1.1);
+    }
+    .socials a:nth-child(1):hover { color: #1DA1F2; }  /* Twitter */
+    .socials a:nth-child(2):hover { color: #1877F2; }  /* Facebook */
+    .socials a:nth-child(3):hover { color: #0A66C2; }  /* LinkedIn */
+    .socials a:nth-child(4):hover { color: #FF0000; }  /* YouTube */
+
+    /* Right Side */
+    .hero-right {
+      flex: 1;
+    }
+    .hero-right h1 {
+      font-size: 36px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .hero-right p {
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+    .hero-right button {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero-right button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(6,182,212,0.8);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-right h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <!-- Left -->
+    <div class="hero-left">
+      <img src="owner.png" alt="Anurag Verma">
+
+      
+      <!-- Social Media Icons -->
+      <div class="socials" >
+ <u>
+        <a href="tel:+918303425374"><i class="fas fa-phone"></i></a>
+        
+    
+    <!-- WhatsApp -->
+    <a href="https://wa.me/918303425374" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    
+    <!-- Gmail -->
+    <a href="mailto:anuragverma8303425@gmail.com"><i class="fas fa-envelope"></i></a>
+    
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/anurag_verma0083?igsh=MTVnZ2lsY2plNjhmZA==" target="_blank"><i class="fab fa-instagram"></i></a>
+    
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/anuragverma8303425?mibextid=ZbWKwL" target="_blank"><i class="fab fa-facebook"></i></a>
+
+    </u>
+        <!-- <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a> -->
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="hero-right">
+      <h1 style="color: red;" >Anurag Verma</h1>
+      <p>Hi, I am <span class="highlight">Anurag Verma</span> from Agra.<br>
+        A <span class="highlight">3rd-year B.Tech Computer Science student</span> passionate about 
+        <span class="highlight">Hacking & Cybersecurity</span> 🔐<br>
+        Exploring <span class="highlight">Web Development</span>, <span class="highlight">Linux</span>, and 
+        <span class="highlight">Full Stack Projects</span> 🚀</p>
+
+
+
+      <!-- Contact Me Button -->
+<!-- <a href="tel:+918303425374">
+  <button>Contact Me</button>
+</a> -->
+
+<!-- resume  -->
+ 
+  <title>Anurag Verma — Portfolio</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1724;
+      --accent:#7c5cff;
+      --accent-2:#00d4ff;
+      --muted:#9aa7bf;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+   
+
+    /* Container (for demo) */
+    .wrap {
+      width:100%;
+      max-width:960px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:32px;
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+      display:flex;
+      gap:24px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    /* Resume primary button */
+    .resume-btn {
+      -webkit-tap-highlight-color: transparent;
+      background: linear-gradient(90deg,var(--accent), var(--accent-2));
+      color: #041025;
+      border: none;
+      padding:12px 20px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:16px;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(124,92,255,0.28);
+      transition: transform .14s ease, box-shadow .14s ease, opacity .12s;
+    }
+    .resume-btn:hover{ transform: translateY(-4px) scale(1.01); box-shadow: 0 10px 30px rgba(124,92,255,0.34); opacity:0.98; }
+
+    /* Popup / popover */
+    .popover {
+      position: absolute;
+      top: calc(50% - 110px);
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.98);
+      min-width:300px;
+      max-width:92%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      box-shadow: 0 12px 30px rgba(3,8,20,0.6);
+      padding:18px;
+      border-radius:14px;
+      z-index:1000;
+      display:none;
+      backdrop-filter: blur(6px);
+      animation: pop .16s ease both;
+    }
+    @keyframes pop {
+      from{ transform: translate(-50%, -50%) scale(.96); opacity:0; }
+      to{ transform: translate(-50%, -50%) scale(1); opacity:1; }
+    }
+
+    .popover.open{ display:block; }
+
+    .popover-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .popover-head h4{
+      margin:0; font-size:15px; letter-spacing:0.2px; color:#eaf0ff;
+    }
+    .close-x{
+      width:34px; height:34px; display:inline-grid; place-items:center; border-radius:10px;
+      background:var(--glass); border:1px solid rgba(255,255,255,0.02); cursor:pointer;
+    }
+    .close-x:hover{ transform:scale(1.03); }
+
+    .popover p { margin:0 0 12px 0; color:var(--muted); font-size:13px; }
+
+    .btn-row { display:flex; gap:12px; }
+    .action-btn {
+      flex:1;
+      padding:10px 12px;
+      border-radius:10px;
+      border: none;
+      cursor:pointer;
+      font-weight:600;
+      font-size:14px;
+      transition: transform 1.12s ease, box-shadow 1.12s ease;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color:#d7b6f8;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .action-btn:hover{ transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0, 0, 0, 0.486); }
+
+    .open-btn {
+      background: linear-gradient(90deg, rgba(124,92,255,0.14), rgba(0,212,255,0.1));
+      border: 1px solid rgba(124,92,255,0.28);
+      color:#eaf0ff;
+    }
+    .download-btn {
+      background: linear-gradient(90deg, rgba(0,212,255,0.08), rgba(124,92,255,0.06));
+      border: 1px solid rgba(0,212,255,0.16);
+      color:#eaf0ff;
+    }
+
+    /* subtle pointer below popover (optional) */
+    .popover::after{
+      content:"";
+      position:absolute;
+      bottom:-10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:12px; height:12px;
+      background: transparent;
+    }
+
+    /* overlay for click outside */
+    .overlay {
+      position:fixed; inset:0; z-index:900; display:none;
+    }
+    .overlay.show { display:block; }
+
+    /* small responsive */
+    @media (max-width:480px){
+      .wrap { padding:18px; flex-direction:column; gap:14px; align-items:flex-start; }
+      .popover{ top:60%; left:50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- <div class="wrap" aria-live="polite">
+    <div>
+      <h2 style="margin:0 0 6px 0;">Anurag Verma</h2>
+      <p style="margin:0;color:var(--muted)">B.Tech CSE • Lucknow</p>
+    </div> -->
+
+    <!-- Resume control (replaces phone/contact button) -->
+    <div style="position:relative;">
+      <button id="resumePrimary" class="resume-btn" aria-haspopup="dialog" aria-expanded="false">
+        Resume
+      </button>
+
+      <!-- Popup -->
+      <div id="resumePopover" class="popover" role="dialog" aria-modal="true" aria-labelledby="popTitle">
+        <div class="popover-head">
+          <!-- <h4 id="popTitle">Resume Options</h4> -->
+          <button class="close-x" id="closePopover" aria-label="Close">
+            ✕
+          </button>
+        </div>
+
+        <!-- <p>Select an option to open or download the resume.</p> -->
+
+        <div class="btn-row">
+          <button id="openResume" class="action-btn open-btn" type="button">Open Resume</button>
+          <button id="downloadResume" class="action-btn download-btn" type="button">Download Resume</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- overlay for outside clicks -->
+  <div id="overlay" class="overlay" tabindex="-1"></div>
+
+  <script>
+    (function(){
+      // ====== IMPORTANT: Change this to your resume PDF URL ======
+      const RESUME_URL = 'resume.pdf'; // <-- replace with 'https://example.com/your_resume.pdf' or '/assets/resume.pdf'
+      // =========================================================
+
+      const resumePrimary = document.getElementById('resumePrimary');
+      const popover = document.getElementById('resumePopover');
+      const overlay = document.getElementById('overlay');
+      const closeBtn = document.getElementById('closePopover');
+      const openBtn = document.getElementById('openResume');
+      const downloadBtn = document.getElementById('downloadResume');
+
+      function openPopover(){
+        popover.classList.add('open');
+        overlay.classList.add('show');
+        resumePrimary.setAttribute('aria-expanded','true');
+      }
+      function closePopover(){
+        popover.classList.remove('open');
+        overlay.classList.remove('show');
+        resumePrimary.setAttribute('aria-expanded','false');
+      }
+
+      // Toggle popover
+      resumePrimary.addEventListener('click', function(e){
+        if(popover.classList.contains('open')) closePopover();
+        else openPopover();
+      });
+
+      // Close handlers
+      closeBtn.addEventListener('click', closePopover);
+      overlay.addEventListener('click', closePopover);
+
+      // Escape key closes popover
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') closePopover();
+      });
+
+      // OPEN RESUME: open in new tab
+      openBtn.addEventListener('click', function(){
+        // Use a simple new tab open
+        window.open(RESUME_URL, '_blank', 'noopener');
+        // optionally close the popover
+        closePopover();
+      });
+
+      // DOWNLOAD RESUME: try anchor download, fallback to fetch+blob
+      downloadBtn.addEventListener('click', async function(){
+        // 1) Try anchor with download attribute
+        try {
+          const a = document.createElement('a');
+          a.href = RESUME_URL;
+          // Suggest filename (extract from URL or default)
+          const suggestedName = RESUME_URL.split('/').pop() || 'resume.pdf';
+          a.setAttribute('download', suggestedName);
+          // For cross-origin URLs, some browsers ignore download attribute.
+          // We'll attempt a click and then fallback if needed.
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          // close popover
+          closePopover();
+
+          // NOTE: If browser blocks direct download because of CORS, fallback below will trigger only if fetch fails.
+        } catch (err) {
+          // fallback handled below
+          console.warn('Direct download failed, trying fetch fallback...', err);
+        }
+
+        // 2) Try fetch+blob fallback to force download (works with CORS enabled or same-origin)
+        try {
+          const resp = await fetch(RESUME_URL, {mode:'cors'});
+          if(!resp.ok) throw new Error('Network response not ok: ' + resp.status);
+          const blob = await resp.blob();
+          const blobUrl = URL.createObjectURL(blob);
+          const a2 = document.createElement('a');
+          a2.href = blobUrl;
+          a2.download = RESUME_URL.split('/').pop() || 'resume.pdf';
+          document.body.appendChild(a2);
+          a2.click();
+          a2.remove();
+          URL.revokeObjectURL(blobUrl);
+        } catch (fetchErr) {
+          console.error('Fetch download failed:', fetchErr);
+          // last resort: open the file in new tab so user can manually save
+          alert('Automatic download failed — opening resume in new tab. Use browser "Save as" to download.');
+          window.open(RESUME_URL, '_blank', 'noopener');
+        } finally {
+          closePopover();
+        }
+      });
+
+      // Close popover when clicking outside the popover element but inside overlay already handled.
+      // Also close when resizing viewport (optional)
+      window.addEventListener('resize', function(){ if(popover.classList.contains('open')) closePopover(); });
+    })();
+  </script>
+
+
+ <!-- resume  -->
+
+
+
+
+
+
+
+
+
+
+      <!-- <button>Contact Me</button> -->
+    </div>
+  </section>
+
+  <!-- FontAwesome for Icons -->
+  <script src="https://kit.fontawesome.com/4d4a2c9c5c.js" crossorigin="anonymous"></script>
+
+    </div>
+
+
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid-3">
+
+<div class="card">🔐 Password Manager (C++ / File Encryption)</div>
+<div class="card">🌐 Personal Portfolio Website</div>
+<div class="card">📡 Linux Server Monitoring Tool</div>
+<div class="card">🛡️ Basic Firewall in Python</div>
+<div class="card">📱 Android Notes App (Flutter + SQLite)</div>
+<div class="card">🤖 Chatbot using Python & NLP</div>
+<div class="card">💾 Student Result Management System (C++ / MySQL)</div>
+<div class="card">🛒 E-Commerce Website (HTML, CSS, JS, PHP, MySQL)</div>
+<div class="card">📊 Data Visualization Dashboard (Python + Matplotlib)</div>
+
+     
+    </div>
+  </section>
+
+ 
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="grid-3">
+<div class="card">HTML, CSS, JavaScript</div>
+<div class="card">PHP & MySQL</div>
+<div class="card">C++ & Data Structures</div>
+<div class="card">Linux & Servers</div>
+<div class="card">Cybersecurity Basics</div>
+<div class="card">Frontend + Backend Dev</div>
+<div class="card">Python Programming</div>
+
+<div class="card">Flutter & Dart (App Dev)</div>
+<div class="card">Git & GitHub (Version Control)</div>
+
+    </div>
+  </section> 
+
+
+
+  <!-- Footer -->
+<title>Footer with Contact Form</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+   
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #6a0033; 
+      color: #fff;
+    }
+
+    /* ✅ Left Side (Contact Form) */
+    .footer-left {
+      flex: 1;
+      background-color: #5a002c; /* dark tone for form */
+      padding: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+    }
+
+    .contact-box {
+      background: #fff;
+      color: #000;
+      padding: 10px;
+      border-radius: 12px;
+      max-width: 350px;
+      width: 100%;
+    }
+
+    .contact-box h2 {
+      margin-bottom: 15px;
+      text-align: center;
+      color: #6a0033;
+    }
+
+    .contact-box input,
+    .contact-box textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .contact-box button {
+      width: 100%;
+      padding: 12px;
+      background: #ffb347;
+      border: none;
+      border-radius: 30px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .contact-box button:hover {
+      background: #ff9900;
+    }
+
+    /* ✅ Right Side (Content) */
+    .footer-right {
+      flex: 2;
+      padding: 40px;
+    }
+
+    .footer-right h3 {
+      color: #00e6e6;
+      margin-top: 0;
+    }
+
+    .newsletter {
+      margin: 20px 0;
+      display: flex;
+      max-width: 450px;
+    }
+
+    .newsletter input {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 30px 0 0 30px;
+      outline: none;
+    }
+
+    .newsletter button {
+      padding: 12px 20px;
+      border: none;
+      background: #ffb347;
+      border-radius: 0 30px 30px 0;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .newsletter button:hover {
+      background: #ff9900;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 50px;
+      margin-top: 20px;
+    }
+
+    .footer-links h4 {
+      margin-bottom: 10px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #fff3;
+      padding-top: 10px;
+     
+    }
+
+    .socials a {
+      margin-left: 12px;
+      font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+       
+    }
+
+    .socials a:hover {
+      color: #ffb347;
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌟 Footer Section -->
+  <footer class="footer">
+    <!-- Left Side Contact Form -->
+    <div class="footer-left">
+      <div class="contact-box">
+        <h2>Contact Me</h2>
+        <form>
+          <input type="text" placeholder="Enter your Name" required>
+          <input type="email" placeholder="Enter your Email" required>
+          <textarea rows="5" placeholder="Enter your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Side Content -->
+    <div class="footer-right">
+      <h3>Anurag Verma</h3>
+      <p>Hi, I am Anurag Verma from Agra.<br>
+      A 3rd-year B.Tech Computer Science student passionate about Hacking & Cybersecurity 🔐<br>
+      Exploring Web Development, Linux, and Full Stack Projects 🚀</p>
+
+      <div class="newsletter">
+        <input type="email" placeholder="Your e-mail">
+        <button>Subscribe Now!</button>
+      </div>
+
+      <div class="footer-links">
+        <div>
+          <h4>Partnership</h4>
+          <ul>
+            <li><a href="#">Websites</a></li>
+            <li><a href="#">Social Media</a></li>
+            <li><a href="#">Branding</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">Our Projects</a></li>
+            <li><a href="#">Careers</a></li>
+          </ul>
+        </div>
+        <div>
+          <!-- <h4>Support</h4>
+          <ul>
+            <li><a href="#">Support Request</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul> -->
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Designed & Developed by Anurag Verma</p>
+
+        <!-- <p>All rights reserved © 2025</p> -->
+        <div class="socials">
+          <a href="tel:+918303425374"><i class="fas fa-phone"></i></a>
+          <a href="https://wa.me/918303425374"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:anuragverma8303425@gmail.com"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.instagram.com/anurag_verma0083"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/anuragverma8303425"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
